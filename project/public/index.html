@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Awareness Simulation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">🛡️</div>
+      <div>
+        <h1>PhishAware</h1>
+        <span>Cybersecurity Awareness Simulation</span>
+      </div>
+    </div>
+    <button class="nav-btn" onclick="showPage('home')">Home</button>
+  </header>
+
+  <main class="container">
+    <!-- HOME -->
+    <section id="home" class="page active">
+      <div class="hero">
+        <div>
+          <span class="badge">MAJOR PROJECT • CYBER SECURITY</span>
+          <h2>Phishing Awareness Simulation</h2>
+          <p>
+            A safe educational simulation demonstrating how phishing messages can
+            influence user behavior. No real passwords or sensitive credentials are collected.
+          </p>
+          <button class="primary" onclick="showPage('consent')">Start Simulation</button>
+        </div>
+        <div class="hero-card">
+          <div class="shield">🛡️</div>
+          <h3>Safe Simulation</h3>
+          <p>Consent-based • Educational • No real credentials</p>
+        </div>
+      </div>
+
+      <div class="cards three">
+        <div class="card"><div class="icon">📧</div><h3>Simulated Email</h3><p>Experience a controlled phishing-awareness scenario.</p></div>
+        <div class="card"><div class="icon">📊</div><h3>Track Behavior</h3><p>Record safe events such as open, click and report.</p></div>
+        <div class="card"><div class="icon">🎓</div><h3>Learn</h3><p>Identify warning signs and improve phishing awareness.</p></div>
+      </div>
+    </section>
+
+    <!-- CONSENT -->
+    <section id="consent" class="page">
+      <div class="panel narrow">
+        <span class="badge">STEP 1</span>
+        <h2>Participant Consent</h2>
+        <p>
+          This is an authorized cybersecurity awareness simulation. The exercise is harmless
+          and educational. No real username, password, or sensitive information should be entered.
+        </p>
+        <div class="notice">
+          <strong>Important:</strong> Participation is voluntary. Results in this demo are
+          shown for awareness purposes and should be reported only in aggregate.
+        </div>
+        <label class="check-row">
+          <input type="checkbox" id="consentCheck">
+          <span>I understand and agree to participate in this educational simulation.</span>
+        </label>
+        <button class="primary" onclick="giveConsent()">Continue</button>
+        <p id="consentError" class="error"></p>
+      </div>
+    </section>
+
+    <!-- EMAIL -->
+    <section id="email" class="page">
+      <div class="step-title">
+        <span class="badge">STEP 2</span>
+        <h2>Simulated Inbox</h2>
+        <p>Read the message carefully. This is a controlled training scenario.</p>
+      </div>
+
+      <div class="email-window">
+        <div class="email-toolbar">
+          <span>Inbox</span>
+          <span class="mail-count">1 new message</span>
+        </div>
+        <div class="email-header">
+          <div class="avatar">IT</div>
+          <div>
+            <strong>IT Support</strong>
+            <p>it-support@company-example.test</p>
+          </div>
+          <span class="time">10:42 AM</span>
+        </div>
+        <div class="email-body">
+          <h3>Action Required: Password Reset</h3>
+          <p>Hello User,</p>
+          <p>Your account requires verification. Please review your account status using the button below.</p>
+          <p class="urgent">Please complete the verification as soon as possible.</p>
+          <button class="email-link" id="reviewBtn" onclick="clickSimulation()">Review Account</button>
+          <p class="small">This button is part of the educational simulation.</p>
+        </div>
+        <div class="email-footer">
+          <button class="secondary" id="reportBtn" onclick="reportEmail()">🚩 Report Suspicious Email</button>
+          <button class="text-btn" onclick="showRedFlags()">View warning signs</button>
+        </div>
+      </div>
+
+      <div id="emailFeedback" class="notice success hidden">
+        <strong>Well done.</strong> You reported the message instead of interacting with it. That is the safest response.
+        <div><button class="primary" type="button" onclick="showPage('debrief')">Continue to Debrief</button></div>
+      </div>
+
+      <div id="redFlags" class="panel redflags hidden">
+        <h3>What should you check?</h3>
+        <ul>
+          <li>Unexpected account or password requests</li>
+          <li>Urgent or pressure-based language</li>
+          <li>Sender address and domain</li>
+          <li>Destination of links before clicking</li>
+          <li>Whether the request can be independently verified</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SAFE LANDING -->
+    <section id="landing" class="page">
+      <div class="panel narrow center">
+        <div class="success-icon">✓</div>
+        <span class="badge">SIMULATION LANDING PAGE</span>
+        <h2>This Was a Simulation</h2>
+        <p>
+          You have reached the educational landing page. This project does not collect
+          or store real usernames or passwords.
+        </p>
+        <p id="landingNote" class="notice hidden"></p>
+        <div class="lesson">
+          <h3>🔎 Stop and Think</h3>
+          <p>
+            Before interacting with an unexpected message, verify the sender, inspect links,
+            avoid pressure-based decisions, and use an official channel to confirm the request.
+          </p>
+        </div>
+        <button class="primary" onclick="showPage('debrief')">Continue to Debrief</button>
+      </div>
+    </section>
+
+    <!-- DEBRIEF -->
+    <section id="debrief" class="page">
+      <div class="panel">
+        <span class="badge">STEP 3</span>
+        <h2>Debrief & Awareness Training</h2>
+        <p>The purpose of the simulation is to improve recognition of phishing indicators.</p>
+
+        <div class="cards three">
+          <div class="card">
+            <div class="icon">🔍</div>
+            <h3>Verify</h3>
+            <p>Check the sender and verify unexpected requests through a trusted channel.</p>
+          </div>
+          <div class="card">
+            <div class="icon">🔗</div>
+            <h3>Inspect Links</h3>
+            <p>Do not blindly open links. Check where a link is intended to take you.</p>
+          </div>
+          <div class="card">
+            <div class="icon">🚩</div>
+            <h3>Report</h3>
+            <p>Report suspicious messages instead of interacting with them.</p>
+          </div>
+        </div>
+
+        <div class="notice">
+          <strong>Remember:</strong> A phishing simulation should never require real credentials.
+        </div>
+        <button class="primary" onclick="showPage('dashboard')">View Dashboard</button>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page">
+      <div class="dashboard-head">
+        <div>
+          <span class="badge">PROJECT DASHBOARD</span>
+          <h2>Simulation Results</h2>
+          <p>Local demo statistics recorded during this browser session.</p>
+        </div>
+        <button class="secondary" onclick="resetSimulation()">Reset Demo</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><span>Delivered</span><strong id="delivered">1</strong></div>
+        <div class="stat"><span>Opened</span><strong id="opened">0</strong></div>
+        <div class="stat"><span>Clicked</span><strong id="clicked">0</strong></div>
+        <div class="stat"><span>Reported</span><strong id="reported">0</strong></div>
+      </div>
+
+      <div class="panel">
+        <h3>Event Timeline</h3>
+        <div id="timeline" class="timeline"></div>
+      </div>
+
+      <div class="panel">
+        <h3>Awareness Result</h3>
+        <div class="bar-row">
+          <span>Opened</span><div class="bar"><div id="openBar" class="fill"></div></div><b id="openPct">0%</b>
+        </div>
+        <div class="bar-row">
+          <span>Clicked</span><div class="bar"><div id="clickBar" class="fill"></div></div><b id="clickPct">0%</b>
+        </div>
+        <div class="bar-row">
+          <span>Reported</span><div class="bar"><div id="reportBar" class="fill"></div></div><b id="reportPct">0%</b>
+        </div>
+      </div>
+
+      <div class="notice">
+        These numbers are local demonstration data, not real participant findings.
+        Replace them with actual authorized aggregate results for your final project.
+      </div>
+    </section>
+  
+<!-- LOGIN SIMULATION -->
+    <section id="login" class="page">
+      <div class="panel narrow simulation-login">
+        <div class="simulation-badge">SIMULATION ONLY</div>
+        <h2>IT Support — Account Verification</h2>
+        <p>For this awareness exercise, this page looks like a sign-in page. <strong>Do not enter a real password.</strong></p>
+
+        <form id="simLoginForm" autocomplete="off">
+          <label for="simUsername">Email / Username</label>
+          <input id="simUsername" name="simUsername" type="text"
+                 placeholder="Enter a test username" autocomplete="off">
+
+          <label for="simPassword">Password</label>
+          <input id="simPassword" name="simPassword" type="password"
+                 placeholder="Never use a real password" autocomplete="new-password">
+
+          <button class="primary" type="submit" id="simSubmit">Sign In (Simulation)</button>
+        </form>
+
+        <p id="loginResult" class="result" hidden></p>
+        <button class="primary hidden" type="button" id="loginContinue" onclick="showPage('landing')">Continue</button>
+        <p class="privacy-note">
+          The email/username you enter here is saved for this training exercise. The password is
+          never sent or stored — it is discarded immediately and is never displayed in the dashboard.
+        </p>
+      </div>
+    </section>
+
+</main>
+
+  <footer>
+    <p>PhishAware • Educational Cybersecurity Project • Safe Simulation Only</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

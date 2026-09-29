@@ -1,0 +1,12 @@
+{
+  "name": "phishaware-backend",
+  "version": "1.0.0",
+  "description": "Backend for the PhishAware phishing-awareness simulation. Stores only the email/username typed into the simulated login form; the password is never sent or stored.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
